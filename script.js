@@ -1,18 +1,17 @@
 function firstNonRepeatedChar(str) {
-    str = str.toLowerCase();
-    let characterCount = {};
-    for (let char of str) {
-        if (characterCount[char]) {
-            characterCount[char] += 1;
-        } else {
-            characterCount[char] = 1;
+    str = str.toLowerCase();    
+    for (let i = 0; i < str.length; i++) {
+        let foundDuplicate = false;
+        for (let j = 0; j < str.length; j++) {
+            if (i !== j && str[i] === str[j]) {
+                foundDuplicate = true;
+                break;
+            }
+        }        
+        if (!foundDuplicate) {
+            return str[i];
         }
-    }
-    for (let char of str) {
-        if (characterCount[char] === 1) {
-            return char;
-        }
-    }
+    }    
     return null;
 }
 
